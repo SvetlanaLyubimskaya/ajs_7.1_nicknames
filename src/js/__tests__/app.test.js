@@ -30,3 +30,7 @@ test('Validator6', () => {
 test('Validator7', () => {
   expect(validator.validateUsername('SvetlanaЛю')).toBe(false);
 });
+
+test('Validator8', () => {
+  expect(validator.validateUsername('Svetlana123')).toBe(false);
+});
