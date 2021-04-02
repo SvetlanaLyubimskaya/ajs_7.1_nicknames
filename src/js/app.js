@@ -3,26 +3,17 @@ export default class Validator {
 //     this.name = name;
 //   }
 
-  //   validateUsername(name) {
-  //     return /^\w[a-z]*[A-Z]*[-][_][0-9]{3}\w$/i.test(name);
-  //   }
-
-  // validateUsername(name) {
-  //   return /^\w[-_\w][\d{3}]\w$/i.test(name);
-  // }
-
   validateUsername(name) {
     // Допустимы только латинские буквы,
     // символы тире -, подчёркивания _ и цифры (0-9);
-    const name1 = /[-\w]*/i.test(name);
+    const name1 = /^[-\w]+$/.test(name);
 
     // Имя не должно содержать подряд более трёх цифр
-    const name2 = /\d{0,3}/g.test(name);
+    const name2 = !/\d{4,}/.test(name);
 
-    // а также начинаться и заканчиваться цифрами,
+    // Имя не должно начинаться и заканчиваться цифрами,
     // символами подчёркивания или тире
-    const name3 = /^[^-_\d][-\w]*[^-_\d]$/.test(name);
-    // const name3 = /^[^-_\d].*[^-_\d]*$/.test(name);
+    const name3 = !/^[\d_-]|[\d_-]$/.test(name);
 
     const result = name1 && name2 && name3;
 
